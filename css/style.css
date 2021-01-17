@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+    
+html {
+    font-size: 16px;
+}
+    
+body {
+    font-size: 1rem;
+    color: black;
+    background-color: white;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.title, form, .results, .errors {
+    margin: 0 auto;
+}
+
+.title, .results, .errors {
+    text-align: center;
+}
+
+.title {
+    margin-bottom: 30px;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: .5rem;
+}
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: .5rem;
+}
+
+form, .results, .errors {
+    width: 400px;
+    margin-bottom: 30px;
+}
+
+.errors {
+    font-style: italic;
+    font-weight: bold;
+    color: red;
+}
+
+
+form {
+    background-color: #cfe2f3;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.options fieldset {
+    width: 49%;
+    padding: 5px;
+    padding-top: 15px;
+    border-radius: 5px;
+}
+
+.options label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type=text] {
+    padding: 4px;
+}
+
+input[type=submit] {
+    padding: 3px 6px;
+}
+
+form, .options fieldset, input[type=text] {
+    border: 1px solid black;
+}
+
+.temp-num {
+    display: block;
+}
+
+.temp-num, .options {
+    margin-bottom: 15px;
+}
+
+.results p {
+    margin-bottom: .5rem;
+}
