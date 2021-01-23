@@ -4,7 +4,9 @@
 // add php here
 // also add php in errors and results divs, 
 //   current error/result text is dummy text for example
-
+        $fToC = ($temp - 32) * (5 / 9); //Fahren to Celsius formula
+        $cToK = $temp + 273.15; //Celsius to Kelvin formula
+        $kToF = ($temp - 273.15) * (9 / 5) + 32; //Kelvin to Fahren formula
 
 
 ?>
