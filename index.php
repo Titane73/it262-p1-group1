@@ -19,10 +19,10 @@
 
 $tempConversion = "";
 $errorMsg = "";
-$userTemp = "";
+$userTemp = (float)"";
 $userScale = "";
 $endScale = "";
-$newTemp = "";
+$newTemp = (float)"";
 
 
 
