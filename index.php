@@ -19,10 +19,10 @@
 
 $tempConversion = "";
 $errorMsg = "";
-$userTemp = "";
+$userTemp = (float)"";
 $userScale = "";
 $endScale = "";
-$newTemp = "";
+$newTemp = (float)"";
 
 
 
@@ -30,7 +30,7 @@ $newTemp = "";
 // ************* Error Checking *************
 
 // First checks if userTemp is an empty string. If so, appends msg to errorMsg.
-if($_POST['userTemp'] == ""){
+if(empty($_POST['userTemp'])){
     $errorMsg .= "<p>Please enter a starting temperature.</p>";
 }else{
     if (is_numeric($_POST['userTemp']) == FALSE) {
@@ -157,6 +157,8 @@ if($_POST['StartScale'] == $_POST['ConvScale']){
                 </div>
 
                 <input type="submit" value="Convert" />
+
+                <a href="">Reset</a>
         
             </form>
     
@@ -172,8 +174,8 @@ if($_POST['StartScale'] == $_POST['ConvScale']){
             </div>
     
             <div class="results">
-                <p>The initial temperature was <br> <?=$userTemp?> <?=$userScale?>.</p>
-                <p>The new temperature is <br> <?=number_format($newTemp, 2)?> <?=$endScale?></p>
+                <p>The initial temperature was <br> <?=number_format($userTemp, 2)?> <?=$userScale?>.</p>
+                <p>The new temperature is <br> <?=number_format($newTemp, 2)?> <?=$endScale?>.</p>
             </div>
 
         </div> <!-- end container -->
