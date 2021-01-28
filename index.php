@@ -29,6 +29,8 @@ $newTemp = (float)"";
 
 // ************* Error Checking *************
 
+// Used .= to append each error to the variable, so one can see a "list" errors that apply.
+
 // First checks if userTemp is an empty string. If so, appends msg to errorMsg.
 if($_POST['userTemp'] == ""){
     $errorMsg .= "<p>Please enter a starting temperature.</p>";
