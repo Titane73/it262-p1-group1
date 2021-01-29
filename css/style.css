@@ -107,12 +107,19 @@ input[type="text"] {
   border-radius: 5px;
 }
 
-input[type="submit"] {
+input[type="submit"], .button {
   padding: 3px 6px;
   border-radius: 5px;
-  margin-left: 41%;
+  /* margin-left: 41%; */
 }
 
+.button {
+  width: 4rem;
+}
+
+.center {
+  text-align: center;
+}
 
 form,
 .options fieldset,

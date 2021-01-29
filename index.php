@@ -1,110 +1,134 @@
 <?php 
 // index.php
 
-// add php here
-// also add php in errors and results divs, 
-//   current error/result text is dummy text for example
+    // add php here
+    // also add php in errors and results divs, 
+    //   current error/result text is dummy text for example
 
-// ------------->  Dominick's formulas 
-        // $FtoC = ($temp - 32) * (5 / 9); //Fahrenheit to Celsius formula
-        // $CtoK = $temp + 273.15; //Celsius to Kelvin formula
-        // $KtoF = ($temp - 273.15) * (9 / 5) + 32; //Kelvin to Fahrenheit formula
+    // ------------->  Dominick's formulas 
+            // $FtoC = ($temp - 32) * (5 / 9); //Fahrenheit to Celsius formula
+            // $CtoK = $temp + 273.15; //Celsius to Kelvin formula
+            // $KtoF = ($temp - 273.15) * (9 / 5) + 32; //Kelvin to Fahrenheit formula
 
-// -------------> Christopher's Formulas here
-
-
+    // -------------> Christopher's Formulas here
 
 
-// ************* Variables *************
+    // ************* Variables *************
 
-$tempConversion = "";
-$errorMsg = "";
-$userTemp = (float)"";
-$userScale = "";
-$endScale = "";
-$newTemp = (float)"";
-
-
+    $tempConversion = "";
+    $errorMsg = "";
+    $userTemp = 0.00;
+    $userScale = "";
+    $endScale = "";
+    $newTemp = 0.00;
 
 
-// ************* Error Checking *************
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        // IF server has a request method of POST, do the following:
 
-// First checks if userTemp is an empty string. If so, appends msg to errorMsg.
-if(empty($_POST['userTemp'])){
-    $errorMsg .= "<p>Please enter a starting temperature.</p>";
-}else{
-    if (is_numeric($_POST['userTemp']) == FALSE) {
-        $errorMsg .= "<p>Alphabetical characters are not allowed. <br>Please enter a number.</p>";
-    }else {
-        $userTemp = $_POST['userTemp'];
-    }
-}
+        // ************* Error Checking *************
 
-// Checks if Starscel has been set. If not, appends msg to errorMsg.
-if(isset($_POST['StartScale'])){
-    $StartScale = $_POST['StartScale'];
-}else{
-    $errorMsg .= "<p>Please select a starting scale.</p>";
-}
+        // First checks if userTemp is an empty string. If so, appends msg to errorMsg.
+        // if(empty($_POST['userTemp'])){
+        //     $errorMsg .= "<p>Please enter a starting temperature.</p>";
+        // }else{
+        //     if (is_numeric($_POST['userTemp']) == FALSE) {
+        //         $errorMsg .= "<p>Alphabetical characters are not allowed. <br>Please enter a number.</p>";
+        //     }else {
+        //         $userTemp = $_POST['userTemp'];
+        //     }
+        // }
 
-// Checks if ConvScale has been set. If not, appends msg to errorMsg.
-if(isset($_POST['ConvScale'])){
-    $ConvScale = $_POST['ConvScale']; 
-}else{
-    $errorMsg .= "<p>Please choose the conversion scale.</p>";
-}
+        // // Checks if Starscel has been set. If not, appends msg to errorMsg.
+        // if(empty($_POST['StartScale'])){
+        //     $errorMsg .= "<p>Please select a starting scale.</p>";
+        // }else{
+        //     $StartScale = $_POST['StartScale'];
+        // }
+
+        // // Checks if ConvScale has been set. If not, appends msg to errorMsg.
+        // if(empty($_POST['ConvScale'])){
+        //     $errorMsg .= "<p>Please choose the conversion scale.</p>";
+        // }else{
+        //     $ConvScale = $_POST['ConvScale'];
+        // }
 
 
+        if( empty($_POST['userTemp']) ){
+            $errorMsg .= "<p>Please enter a starting temperature.</p>";
+        }
+        if( empty($_POST['StartScale']) ) {
+            $errorMsg .= "<p>Please select a starting scale.</p>";
+        }
+        if( empty($_POST['ConvScale']) ) {
+            $errorMsg .= "<p>Please choose the conversion scale.</p>";
+        }
+        // if( $_POST['StartScale'] == $_POST['ConvScale'] ) {
+        //     $errorMsg .= "<p>The starting and conversion scales cannot be the same. Please, try again.</p>";
+        // }
+        elseif( isset(
+            // IF all the above errors work out, do the following:
 
-// ************* CONVERSIONS *************
+            $_POST['userTemp'],
+            $_POST['StartScale'],
+            $_POST['ConvScale']) ) {
+                // IF all of these are set, do the following:
 
-// Fahrenheit to Celsius
-if ($_POST['StartScale'] == 'StartF' && $_POST['ConvScale'] == 'ConvC') {
-    $userScale = "Fahrenheit";
-    $endScale = "Celsius";
-    $newTemp = (($userTemp - 32)* (5/9));
-} 
+                if( is_numeric($_POST['userTemp']) ) {
 
-// Fahrenheit to Kelvin
-if ($_POST['StartScale'] == 'StartF' && $_POST['ConvScale'] == 'ConvK') {
-    $userScale = "Fahrenheit";
-    $endScale = "Kelvin";
-    $newTemp = (($userTemp - 32)* (5/9) + 273.15);
-} 
+                    // ************* CONVERSIONS *************
 
-// Celsius to Fahrenheit
-if ($_POST['StartScale'] == 'StartC' && $_POST['ConvScale'] == 'ConvF') {
-    $userScale = "Celsius";
-    $endScale = "Fahrenheit";
-    $newTemp = (($userTemp * 9/5) + 32);
-} 
+                    $userTemp = $_POST['userTemp'];
 
-// Celsius to Kelvin
-if ($_POST['StartScale'] == 'StartC' && $_POST['ConvScale'] == 'ConvK') {
-    $userScale = "Celsius";
-    $endScale = "Kelvin";
-    $newTemp = ($userTemp + 273.15);  
-} 
+                    // Fahrenheit to Celsius
+                    if ($_POST['StartScale'] == 'StartF' && $_POST['ConvScale'] == 'ConvC') {
+                        $userScale = "Fahrenheit";
+                        $endScale = "Celsius";
+                        $newTemp = (($userTemp - 32)* (5/9));
+                    } 
 
-// Kelvin to Fahrenheit
-if ($_POST['StartScale'] == 'StartK' && $_POST['ConvScale'] == 'ConvF') {
-    $userScale = "Kelvin";
-    $endScale = "Fahrenheit";
-    $newTemp = (($userTemp - 273.15)* (9/5) + 32);
-} 
+                    // Fahrenheit to Kelvin
+                    if ($_POST['StartScale'] == 'StartF' && $_POST['ConvScale'] == 'ConvK') {
+                        $userScale = "Fahrenheit";
+                        $endScale = "Kelvin";
+                        $newTemp = (($userTemp - 32)* (5/9) + 273.15);
+                    } 
 
-// Kelvin to Celsius
-if ($_POST['StartScale'] == 'StartK' && $_POST['ConvScale'] == 'ConvC') {
-    $userScale = "Kelvin";
-    $endScale = "Celsius";
-    $newTemp = ($userTemp - 273.15);
-} 
+                    // Celsius to Fahrenheit
+                    if ($_POST['StartScale'] == 'StartC' && $_POST['ConvScale'] == 'ConvF') {
+                        $userScale = "Celsius";
+                        $endScale = "Fahrenheit";
+                        $newTemp = (($userTemp * 9/5) + 32);
+                    } 
 
-// Checks to see if starting and conversion scale are the same. 
-// *****  Not working on it's own... only displays with other errors  *****
-if($_POST['StartScale'] == $_POST['ConvScale']){
-    $errorMsg .= "<p>The starting and conversion scales cannot be the same. Please, try again.</p>";
-}
+                    // Celsius to Kelvin
+                    if ($_POST['StartScale'] == 'StartC' && $_POST['ConvScale'] == 'ConvK') {
+                        $userScale = "Celsius";
+                        $endScale = "Kelvin";
+                        $newTemp = ($userTemp + 273.15);  
+                    } 
+
+                    // Kelvin to Fahrenheit
+                    if ($_POST['StartScale'] == 'StartK' && $_POST['ConvScale'] == 'ConvF') {
+                        $userScale = "Kelvin";
+                        $endScale = "Fahrenheit";
+                        $newTemp = (($userTemp - 273.15)* (9/5) + 32);
+                    } 
+
+                    // Kelvin to Celsius
+                    if ($_POST['StartScale'] == 'StartK' && $_POST['ConvScale'] == 'ConvC') {
+                        $userScale = "Kelvin";
+                        $endScale = "Celsius";
+                        $newTemp = ($userTemp - 273.15);
+                    } 
+
+                } else {
+                    $errorMsg .= "<p>Alphabetical characters are not allowed. <br>Please enter a number.</p>";
+                } // end if
+
+            } // end elseif
+
+    } // end server
 
 ?>
 
@@ -156,19 +180,22 @@ if($_POST['StartScale'] == $_POST['ConvScale']){
                     </fieldset>
                 </div>
 
-                <input type="submit" value="Convert" />
+                <!-- <input type="submit" value="Convert" />
+                <p class="reset"><a href="">Reset</a></p> -->
 
-                <a href="">Reset</a>
+                <div class="center">
+                    <button type="submit" class="button">Convert</button>
+                    <button type="button" class="button" onclick="window.location.href = '<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>'">Reset</button>
+                </div>
         
             </form>
     
             <div class="errors">
                 <?php 
                     if ($errorMsg != "") {
-                        echo"<p>Error, Will Robinson! Error!</p>";
+                        echo "<p>Error, Will Robinson! Error!</p>";
                         echo $errorMsg;
                     }
-
                 ?>
                 
             </div>
@@ -176,6 +203,7 @@ if($_POST['StartScale'] == $_POST['ConvScale']){
             <div class="results">
                 <p>The initial temperature was <br> <?=number_format($userTemp, 2)?> <?=$userScale?>.</p>
                 <p>The new temperature is <br> <?=number_format($newTemp, 2)?> <?=$endScale?>.</p>
+
             </div>
 
         </div> <!-- end container -->
