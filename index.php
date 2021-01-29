@@ -169,7 +169,7 @@ if($_POST['StartScale'] == $_POST['ConvScale']){
                     if ($errorMsg != "") {
                         echo"<p>Error, Will Robinson! Error!</p>";
                         echo $errorMsg;
-                        echo "<p>Please, try again.</p>"
+                        echo "<p>Please, try again.</p>";
                     }
 
                 ?>
