@@ -105,7 +105,7 @@ if ($_POST['StartScale'] == 'StartK' && $_POST['ConvScale'] == 'ConvC') {
 // Checks to see if starting and conversion scale are the same. 
 // *****  Not working on it's own... only displays with other errors  *****
 if($_POST['StartScale'] == $_POST['ConvScale']){
-    $errorMsg .= "<p>The starting and conversion scales cannot be the same. Please, try again.</p>";
+    $errorMsg .= "<p>The starting and conversion scales cannot be the same. </p>";
 }
 
 ?>
@@ -169,6 +169,7 @@ if($_POST['StartScale'] == $_POST['ConvScale']){
                     if ($errorMsg != "") {
                         echo"<p>Error, Will Robinson! Error!</p>";
                         echo $errorMsg;
+                        echo "<p>Please, try again.</p>"
                     }
 
                 ?>
